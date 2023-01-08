@@ -30,17 +30,16 @@ const players = {
 
 async function relax(req, res) {
     const token = req.query.token;
-    const bookingDate = utils.getNextDayOfTheWeek("monday");
+    const day = req.query.day;
+    const bookingDate = utils.getNextDayOfTheWeek(day);
     const playerIdsCsv = "210797,180022,210556";
     await makeBooking(res, token, bookingDate, playerIdsCsv);
 }
 
 async function marisco(req, res) {
     const token = req.query.token;
-    const bookingDate1 = utils.getNextDayOfTheWeek("tuesday");
-    const bookingDate2 = utils.getNextDayOfTheWeek("thursday");
-    const bookingDate = bookingDate1 < bookingDate2 ? bookingDate1 : bookingDate2;
-
+    const day = req.query.day;
+    const bookingDate = utils.getNextDayOfTheWeek(day);
     const playerIdsCsv = "179439,180022,173264";
     await makeBooking(res, token, bookingDate, playerIdsCsv);
 }
